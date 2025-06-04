@@ -6,120 +6,49 @@
 <title>Prolog за Цветя с GIF</title>
 <style>
   body {
-    font-family: 'Poppins', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 30px;
-    background: linear-gradient(135deg, #a0e9ff 0%, #f0dfff 100%);
-    color: #2a3a35;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+    background: #f0f8ff;
+    color: #333;
   }
-
   h1 {
-    color: #3a7d44;
     text-align: center;
-    font-weight: 700;
-    font-size: 3rem;
-    margin-bottom: 40px;
-    text-shadow: 1px 1px 3px #9dc3a5;
+    color: #2e8b57;
   }
-
   #queryInput {
     width: 100%;
-    max-width: 600px;
-    padding: 16px 20px;
-    font-size: 1.3rem;
-    border: 3px solid #3a7d44;
-    border-radius: 40px;
-    outline: none;
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    box-shadow: 0 4px 10px #95bf8a44;
+    padding: 10px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    border: 2px solid #2e8b57;
+    border-radius: 5px;
   }
-  #queryInput::placeholder {
-    font-style: italic;
-    color: #69986f;
-  }
-  #queryInput:focus {
-    border-color: #60b347;
-    box-shadow: 0 0 15px #60b347cc;
-  }
-
   #runBtn {
-    margin-top: 20px;
-    padding: 14px 50px;
-    font-size: 1.25rem;
-    background: linear-gradient(45deg, #4caf50, #81c784);
+    padding: 10px 20px;
+    background-color: #2e8b57;
     border: none;
-    border-radius: 50px;
     color: white;
-    font-weight: 700;
+    font-size: 1.1em;
+    border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 6px 20px #4caf5077;
-    transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
   }
   #runBtn:hover {
-    background: linear-gradient(45deg, #81c784, #4caf50);
-    box-shadow: 0 10px 30px #4caf50bb;
-    transform: scale(1.05);
+    background-color: #246b45;
   }
-  #runBtn:active {
-    transform: scale(0.95);
-  }
-
   #result {
-    margin-top: 40px;
-    max-width: 650px;
-    background: rgba(255,255,255,0.95);
-    padding: 30px 35px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px #7cb67255;
-    font-size: 1.25rem;
-    min-height: 170px;
-    color: #2a3a35;
+    margin-top: 20px;
+    font-size: 1.2em;
   }
-
-  #result h3 {
-    color: #4caf50;
-    margin-bottom: 20px;
-    font-weight: 700;
-    text-shadow: 1px 1px 2px #a0d49a;
-  }
-
-  #result p {
-    margin: 12px 0;
-    line-height: 1.4;
-  }
-
   .flower-gif {
-    display: block;
-    margin: 25px auto 0 auto;
-    max-width: 320px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px #4caf5077;
-    cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    border: 4px solid transparent;
+    margin-top: 15px;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #2e8b57aa;
   }
-  .flower-gif:hover {
-    transform: scale(1.12) rotate(4deg);
-    box-shadow: 0 18px 45px #4caf50cc;
-    border-color: #81c784;
-  }
-
-  /* Responsive */
-  @media (max-width: 700px) {
-    #queryInput, #result {
-      max-width: 95vw;
-      font-size: 1.1rem;
-    }
-    h1 {
-      font-size: 2.3rem;
-    }
-    #runBtn {
-      width: 100%;
-      padding: 14px 0;
-    }
+  pre {
+    background: #e0f0d9;
+    padding: 10px;
+    border-radius: 5px;
   }
 </style>
 </head>
@@ -127,7 +56,7 @@
 
 <h1>Prolog за Цветя с GIF</h1>
 
-<input id="queryInput" type="text" placeholder="Въведете Prolog заявка, напр. is_flowering(X)." autocomplete="off" />
+<input id="queryInput" type="text" placeholder="Въведете Prolog заявка, напр. is_flowering(X)." />
 <button id="runBtn">Изпълни</button>
 
 <div id="result"></div>
@@ -154,13 +83,13 @@ is_colorful(daisy).
 is_flowering_and_aromatic(X) :- is_flowering(X), is_aromatic(X).
 `;
 
-// Обект с GIF за всяко цвете (с проверени и подходящи линкове)
+// Обект с GIF за всяко цвете
 const flowerAnimations = {
-  rose: '<img src="https://media.giphy.com/media/26BRBupaLr2jpWq1O/giphy.gif" class="flower-gif" alt="Rose" title="Rose" />',
-  tulip: '<img src="https://media.giphy.com/media/3oEjHCWdU7F4Tb4U1a/giphy.gif" class="flower-gif" alt="Tulip" title="Tulip" />',
-  sunflower: '<img src="https://media.giphy.com/media/6TPfUt1Whb6lS/giphy.gif" class="flower-gif" alt="Sunflower" title="Sunflower" />',
-  lavender: '<img src="https://media.giphy.com/media/l41lXagLsaQ9o1oJi/giphy.gif" class="flower-gif" alt="Lavender" title="Lavender" />',
-  daisy: '<img src="https://media.giphy.com/media/l2JHRhAtnJSDNJ2py/giphy.gif" class="flower-gif" alt="Daisy" title="Daisy" />',
+  rose: '<img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" class="flower-gif" alt="Rose" />',
+  tulip: '<img src="https://media.giphy.com/media/26FPy3QZQqGtDcrja/giphy.gif" class="flower-gif" alt="Tulip" />',
+  sunflower: '<img src="https://media.giphy.com/media/3o7TKyPbP5RWBg2byE/giphy.gif" class="flower-gif" alt="Sunflower" />',
+  lavender: '<img src="https://media.giphy.com/media/26u4lOMA8JKSnL9Uk/giphy.gif" class="flower-gif" alt="Lavender" />',
+  daisy: '<img src="https://media.giphy.com/media/l2SpRAfFvSlBzjQso/giphy.gif" class="flower-gif" alt="Daisy" />',
 };
 
 const session = pl.create(1000);
@@ -179,6 +108,7 @@ runBtn.addEventListener("click", () => {
 
   resultDiv.innerHTML = "<p>Търсене...</p>";
 
+  // Премахваме всички предишни решения от сесията
   session.query(query);
 
   let answers = [];
@@ -197,6 +127,7 @@ runBtn.addEventListener("click", () => {
 });
 
 function displayResults(answers) {
+  // Извличаме стойностите на променливите в решенията
   let outputHTML = "<h3>Намерени решения:</h3>";
   for (let ans of answers) {
     const vars = Object.keys(ans.links);
@@ -207,6 +138,7 @@ function displayResults(answers) {
 
     outputHTML += `<p>${varsOutput}</p>`;
 
+    // Ако намерим стойност на променлива X, която е цвете, показваме GIF
     for (let v of vars) {
       const val = ans.links[v].toString();
       if (flowerAnimations[val]) {
